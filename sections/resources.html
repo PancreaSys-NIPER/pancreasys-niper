@@ -1,0 +1,316 @@
+<section id="resources" class="resources-section">
+    <div class="container">
+        <h2 class="section-title">Lab Resources</h2>
+
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="auth-lock-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Member Access</h3>
+                <p>Sign in or request access to view lab materials.</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="signin">Sign In</button>
+                <button class="auth-tab-btn" data-tab="signup">Request Access</button>
+            </div>
+
+            <div class="auth-forms">
+                <div class="auth-form-panel active" id="signinPanel">
+                    <form id="signinForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signinEmail">Email</label>
+                            <input type="email" id="signinEmail" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signinPassword">Password</label>
+                            <input type="password" id="signinPassword" required placeholder="Enter your password">
+                        </div>
+                        <div class="auth-form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="button" class="auth-text-button" id="forgotPasswordBtn">Forgot password?</button>
+                        </div>
+                        <p class="auth-note"><i class="fas fa-info-circle"></i> Your account must be approved by Dr. Ujjwal Mahajan before you can sign in.</p>
+                    </form>
+                </div>
+
+                <div class="auth-form-panel" id="signupPanel">
+                    <form id="signupForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" id="signupName" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupRole">Role</label>
+                            <input type="text" id="signupRole" required placeholder="e.g., PhD Student, Postdoc">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" required placeholder="Minimum 8 characters" minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirmPassword">Confirm Password</label>
+                            <input type="password" id="signupConfirmPassword" required placeholder="Re-enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Request Access</button>
+                        <p class="auth-note"><i class="fas fa-info-circle"></i> After submitting, an approval request is sent to Dr. Ujjwal Mahajan. You can sign in once approved.</p>
+                    </form>
+                </div>
+
+                <div class="auth-form-panel" id="resetRequestPanel">
+                    <form id="resetRequestForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="resetRequestEmail">Account Email</label>
+                            <input type="email" id="resetRequestEmail" required placeholder="your.email@example.com">
+                        </div>
+                        <div class="auth-form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Create Reset Link</button>
+                            <button type="button" class="auth-text-button" id="cancelResetRequestBtn">Back to Sign In</button>
+                        </div>
+                        <p class="auth-note"><i class="fas fa-info-circle"></i> A time-limited reset link will be generated for the account email you enter.</p>
+                    </form>
+                </div>
+
+                <div class="auth-form-panel" id="resetPasswordPanel">
+                    <form id="resetPasswordForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="resetPasswordNew">New Password</label>
+                            <input type="password" id="resetPasswordNew" required placeholder="Minimum 8 characters" minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="resetPasswordConfirm">Confirm New Password</label>
+                            <input type="password" id="resetPasswordConfirm" required placeholder="Re-enter your new password" minlength="8">
+                        </div>
+                        <div class="auth-form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
+                            <button type="button" class="auth-text-button" id="cancelResetPasswordBtn">Back to Sign In</button>
+                        </div>
+                        <p class="auth-note" id="resetPasswordHint"><i class="fas fa-info-circle"></i> Open this form from a valid password reset link.</p>
+                    </form>
+                </div>
+            </div>
+
+            <div id="approvalLinkSection" hidden>
+                <div class="approval-box">
+                    <div class="approval-success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h4>Account Created!</h4>
+                    <p>Share the approval link below with Dr. Ujjwal Mahajan, or check your email — it should have opened automatically.</p>
+                    <div class="approval-link-container">
+                        <input type="text" id="approvalLinkInput" readonly>
+                        <button class="btn btn-secondary" id="copyLinkBtn">Copy</button>
+                    </div>
+                    <ol class="approval-steps">
+                        <li>Your email client has opened with a pre-filled approval request.</li>
+                        <li>Review and send the email to complete your request.</li>
+                        <li>Once approved, sign in with your credentials.</li>
+                    </ol>
+                    <button class="btn btn-primary" id="backToSigninBtn">Back to Sign In</button>
+                </div>
+            </div>
+
+            <div id="resetLinkSection" hidden>
+                <div class="approval-box">
+                    <div class="approval-success-icon"><i class="fas fa-key"></i></div>
+                    <h4>Password Reset Link Ready</h4>
+                    <p>Use this link to open the reset form. You can also copy it and store it safely until you complete the reset.</p>
+                    <div class="approval-link-container">
+                        <input type="text" id="resetLinkInput" readonly>
+                        <button class="btn btn-secondary" id="copyResetLinkBtn">Copy</button>
+                    </div>
+                    <button class="btn btn-primary" id="backToSigninFromResetBtn">Back to Sign In</button>
+                </div>
+            </div>
+
+            <div id="memberDashboard" hidden>
+                <div class="member-info">
+                    <p><strong>Signed in as:</strong> <span id="loggedInUserName"></span> (<span id="loggedInUserEmail"></span>)</p>
+                    <button class="btn btn-secondary" id="logoutBtn">Sign Out</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="resourcesContent" hidden>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Lab Handbook</h3>
+                    <p>
+                        Comprehensive guide to lab culture, expectations, procedures, and safety protocols.
+                        Essential reading for all lab members.
+                    </p>
+                    <a href="https://github.com/PancreaSys-NIPER/LabManual/blob/main/handbook.pdf" class="btn btn-small" target="_blank" rel="noopener noreferrer">View PDF</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Lab Protocols</h3>
+                    <p>
+                        Standardized protocols for experiments, procedures, and techniques used in the PancreaSys lab.
+                    </p>
+                    <a href="https://drive.google.com/drive/folders/1aFsgVItY2wWvZ5nvwlKba12_X-gnE65y?usp=share_link" class="btn btn-small" target="_blank" rel="noopener noreferrer">Access Protocols</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-scroll"></i>
+                    <h3>Lab Templates</h3>
+                    <p>
+                        Download presentation, poster, manuscript templates, and lab forms for consistent outputs.
+                    </p>
+                    <a href="https://drive.google.com/drive/folders/1eYfxLWaI9WLuTNOYY73FFEESoDveNlxe?usp=share_link" class="btn btn-small" target="_blank" rel="noopener noreferrer">Get Templates</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub Repository</h3>
+                    <p>
+                        Access our code, protocols, and templates. We believe in open science and reproducible research.
+                    </p>
+                    <a href="https://github.com/PancreaSys-NIPER" class="btn btn-small" target="_blank" rel="noopener noreferrer">Visit GitHub</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Lab Calendar</h3>
+                    <p>
+                        Stay updated with lab meetings, seminars, and important events. Sync with your calendar.
+                    </p>
+                    <a href="https://calendar.online/ab50cc723d6725807d9b" class="btn btn-small" target="_blank" rel="noopener noreferrer">View Calendar</a>
+                </div>
+                <div class="resource-card">
+                    <i class="fas fa-user-clock"></i>
+                    <h3>One-on-One Meeting</h3>
+                    <p>
+                        Schedule an individual meeting slot for project discussions, guidance, and progress reviews.
+                    </p>
+                    <a href="https://calendar.online/b/9fab42a791b197a1" class="btn btn-small" target="_blank" rel="noopener noreferrer">Book Meeting</a>
+                </div>
+            </div>
+
+            <section class="consumables-app-shell" id="consumablesApp" aria-labelledby="consumablesAppTitle">
+                <div class="consumables-app-header">
+                    <div>
+                        <p class="consumables-eyebrow">Consumables Ordering</p>
+                        <h3 id="consumablesAppTitle">Request, confirm, and track consumables</h3>
+                        <p class="consumables-app-intro">
+                            Search the existing lab inventory, check when an item was last ordered and where it was stored,
+                            then add a request. If the item is not available, confirm the request to route it to the lab head.
+                        </p>
+                    </div>
+                    <div class="consumables-summary" id="consumablesSummary"></div>
+                </div>
+
+                <div class="consumables-status-message" id="consumablesStatusMessage">
+                    Historical consumables data is seeded from the attached workbook and new requests are saved in this browser.
+                </div>
+
+                <div class="consumables-tabs" role="tablist" aria-label="Consumables sections">
+                    <button type="button" class="consumables-tab is-active" data-consumables-tab="request" aria-selected="true">Request & lookup</button>
+                    <button type="button" class="consumables-tab" data-consumables-tab="browse" aria-selected="false">Categories & recent orders</button>
+                </div>
+
+                <div id="consumablesRequestView">
+                    <div class="consumables-layout">
+                        <div class="consumables-panel">
+                            <div class="consumables-panel-header">
+                                <h4>New request</h4>
+                                <p>Signed in as <span id="requesterIdentity">Lab member</span></p>
+                            </div>
+
+                            <form id="consumablesRequestForm" class="consumables-form">
+                                <div class="consumables-form-grid">
+                                    <div class="form-group">
+                                        <label for="consumableName">Consumable Name</label>
+                                        <input type="text" id="consumableName" placeholder="e.g., 100bp DNA ladder" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="consumableCatalogue">Catalogue Number</label>
+                                        <input type="text" id="consumableCatalogue" placeholder="e.g., G2101">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="consumableManufacturer">Manufacturer</label>
+                                        <input type="text" id="consumableManufacturer" placeholder="e.g., Promega">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="consumableQuantity">Requested Quantity</label>
+                                        <input type="text" id="consumableQuantity" placeholder="e.g., 1 box / 2 bottles">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="consumableAvailability">Availability</label>
+                                    <select id="consumableAvailability">
+                                        <option value="available">Available or needs stock check</option>
+                                        <option value="not-available">Not available, send to lab head</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="consumableNotes">Request Notes</label>
+                                    <textarea id="consumableNotes" rows="4" placeholder="Mention project, urgency, or extra details"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Add Request</button>
+                            </form>
+
+                            <div class="consumables-suggestions" id="consumablesSuggestions"></div>
+                        </div>
+
+                        <div class="consumables-panel">
+                            <div class="consumables-panel-header">
+                                <h4>Last order and storage</h4>
+                                <p>Use the catalogue match below before creating a duplicate order.</p>
+                            </div>
+                            <div id="consumablesLookupResult"></div>
+                        </div>
+                    </div>
+
+                    <div class="consumables-lists">
+                        <div class="consumables-panel">
+                            <div class="consumables-panel-header">
+                                <div class="consumables-panel-header-main">
+                                    <div>
+                                        <h4>Request log</h4>
+                                        <p>Recent requests saved in this browser for the current site.</p>
+                                    </div>
+                                    <button type="button" class="btn btn-small consumables-export-tab" id="downloadOrderedCsvBtn">
+                                        Download Ordered CSV
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="consumablesRequestList"></div>
+                        </div>
+
+                        <div class="consumables-panel" id="consumablesLabHeadPanel" hidden>
+                            <div class="consumables-panel-header">
+                                <h4>Lab head queue</h4>
+                                <p>Pending purchase confirmations and storage updates.</p>
+                            </div>
+                            <div id="labHeadQueue"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="consumablesBrowseView" hidden>
+                    <div class="consumables-layout">
+                        <div class="consumables-panel">
+                            <div class="consumables-panel-header">
+                                <h4>Categories</h4>
+                                <p>Browse the catalog by category and see which items are available in the current seed.</p>
+                            </div>
+                            <div id="consumablesCategoryList"></div>
+                        </div>
+
+                        <div class="consumables-panel">
+                            <div class="consumables-panel-header">
+                                <h4>Recent ordered updates</h4>
+                                <p>Latest requests that were marked ordered or stored.</p>
+                            </div>
+                            <div id="consumablesRecentOrdersList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

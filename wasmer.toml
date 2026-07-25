@@ -1,0 +1,10 @@
+[package]
+name = "pancreasys-lab-website"
+version = "0.1.0"
+description = "Flask-backed website for the PancreaSys Lab"
+
+[package.metadata.wasmer]
+type = "python"
+entrypoint = "app:app"
+package = "flask"
+python_version = "3.11"
