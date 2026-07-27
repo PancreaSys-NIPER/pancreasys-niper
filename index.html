@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PancreaSys Lab - NIPER S.A.S. Nagar</title>
     <meta name="theme-color" content="#0d47a1">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/consumables-app.css">
@@ -89,5 +92,18 @@
     <script src="js/loader.js"></script>
     <script src="js/script.js"></script>
     <script src="js/consumables-app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.warn('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

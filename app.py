@@ -31,6 +31,7 @@ DEMO_EMAIL = "demo@pancreasys.lab"
 DEMO_PASSWORD = os.environ.get("PANCREASYS_DEMO_PASSWORD")
 ENABLE_DEMO_SIGNIN = env_bool("PANCREASYS_ENABLE_DEMO_SIGNIN", APP_ENV != "production")
 STATIC_DIRS = {"css", "js", "images", "sections", "data", "consumables"}
+EXTRA_STATIC_FILES = {"manifest.webmanifest", "sw.js"}
 DEFAULT_SECRET_KEY = "pancreasys-dev-secret-change-me"
 SIGNIN_MAX_ATTEMPTS = int(os.environ.get("PANCREASYS_SIGNIN_MAX_ATTEMPTS", "6"))
 SIGNIN_WINDOW_SECONDS = int(os.environ.get("PANCREASYS_SIGNIN_WINDOW_SECONDS", "300"))
@@ -891,7 +892,7 @@ def serve_index():
 @app.get("/<path:requested_path>")
 def serve_site_file(requested_path: str):
     first_part = requested_path.split("/", 1)[0]
-    if first_part not in STATIC_DIRS and requested_path != "index.html":
+    if first_part not in STATIC_DIRS and requested_path not in EXTRA_STATIC_FILES and requested_path != "index.html":
         abort(404)
     return send_from_directory(ROOT, requested_path)
 
